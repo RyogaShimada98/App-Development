@@ -42,6 +42,7 @@ class MainActivity : AppCompatActivity() {
             return PhotoViewHolder(view)
         }
 
+
         override fun onBindViewHolder(holder: PhotoViewHolder, position: Int) {
             val photo = photos[position]
             // 写真をimageViewに設定
