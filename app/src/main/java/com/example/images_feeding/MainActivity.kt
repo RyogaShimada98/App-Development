@@ -7,7 +7,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.ImageView
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import java.io.File
 c
@@ -15,7 +17,42 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-t
+        val recyclerView = findViewById<RecyclerView>(R.id.photos_grid_recyclerview)
+        recyclerView.layoutManager = GridLayoutManager(this, 3) // 3は列の数です
+        var deleteCount = 0 // 削除された写真の数を追跡
+
+// 写真を削除するたびに呼び出されるコールバック
+        val onDelete: (Photo) -> Unit = { photo ->
+            photos.remove(photo)
+            adapter.notifyDataSetChanged()
+            deleteCount++
+            updateDeleteCountView(deleteCount) // カウンターを更新するメソッド
+        }
+
+    }
+    class PhotosAdapter(private val photos: List<Photo>, private val onDelete: (Photo) -> Unit) : RecyclerView.Adapter<PhotosAdapter.PhotoViewHolder>() {
+
+        class PhotoViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+            val imageView: ImageView = view.findViewById(R.id.photo_image_view)
+            val deleteButton: ImageButton = view.findViewById(R.id.delete_button)
+        }
+
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PhotoViewHolder {
+            val view = LayoutInflater.from(parent.context).inflate(R.layout.photo_item, parent, false)
+            return PhotoViewHolder(view)
+        }
+
+        override fun onBindViewHolder(holder: PhotoViewHolder, position: Int) {
+            val photo = photos[position]
+            // 写真をimageViewに設定
+            holder.imageView.setImageURI(photo.uri)
+            // 削除ボタンのクリックリスナーを設定
+            holder.deleteButton.setOnClickListener {
+                onDelete(photo)
+            }
+        }
+
+        override fun getItemCount() = photos.size
     }
 
 }
