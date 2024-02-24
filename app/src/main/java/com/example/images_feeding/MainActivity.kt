@@ -56,8 +56,8 @@ class MainActivity : AppCompatActivity() {
     }
 
 }
-//    class PhotoAdapter(private val photos: List<String>, private val onClick: (String) -> Unit) : RecyclerView.Adapter<PhotoAdapter.PhotoViewHolder>() {
-//
+    class PhotoAdapter(private val photos: List<String>, private val onClick: (String) -> Unit) : RecyclerView.Adapter<PhotoAdapter.PhotoViewHolder>() {
+
 //        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PhotoViewHolder {
 //            val view = LayoutInflater.from(parent.context).inflate(R.layout.photo_item, parent, false)
 //            return PhotoViewHolder(view, onClick)
