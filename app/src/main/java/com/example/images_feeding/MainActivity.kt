@@ -29,6 +29,7 @@ class MainActivity : AppCompatActivity() {
             updateDeleteCountView(deleteCount) // カウンターを更新するメソッド
         }
     }
+
     class PhotosAdapter(private val photos: List<Photo>, private val onDelete: (Photo) -> Unit) : RecyclerView.Adapter<PhotosAdapter.PhotoViewHolder>() {
 
         class PhotoViewHolder(view: View) : RecyclerView.ViewHolder(view) {
