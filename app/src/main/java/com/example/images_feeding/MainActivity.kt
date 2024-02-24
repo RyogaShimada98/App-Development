@@ -56,27 +56,27 @@ class MainActivity : AppCompatActivity() {
     }
 
 }
-    class PhotoAdapter(private val photos: List<String>, private val onClick: (String) -> Unit) : RecyclerView.Adapter<PhotoAdapter.PhotoViewHolder>() {
-
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PhotoViewHolder {
-            val view = LayoutInflater.from(parent.context).inflate(R.layout.photo_item, parent, false)
-            return PhotoViewHolder(view, onClick)
-        }
-
-        override fun onBindViewHolder(holder: PhotoViewHolder, position: Int) {
-            holder.bind(photos[position])
-        }
-
-        override fun getItemCount(): Int = photos.size
-
-        class PhotoViewHolder(private val view: View, private val onClick: (String) -> Unit) : RecyclerView.ViewHolder(view) {
-            private val imageView: ImageView = view.findViewById(R.id.imageView)
-
-            fun bind(photoUri: String) {
-                Glide.with(view.context).load(photoUri).into(imageView)
-                view.setOnClickListener { onClick(photoUri) }
-            }
+//    class PhotoAdapter(private val photos: List<String>, private val onClick: (String) -> Unit) : RecyclerView.Adapter<PhotoAdapter.PhotoViewHolder>() {
+//
+//        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PhotoViewHolder {
+//            val view = LayoutInflater.from(parent.context).inflate(R.layout.photo_item, parent, false)
+//            return PhotoViewHolder(view, onClick)
 //        }
+//
+//        override fun onBindViewHolder(holder: PhotoViewHolder, position: Int) {
+//            holder.bind(photos[position])
+//        }
+//
+//        override fun getItemCount(): Int = photos.size
+//
+//        class PhotoViewHolder(private val view: View, private val onClick: (String) -> Unit) : RecyclerView.ViewHolder(view) {
+//            private val imageView: ImageView = view.findViewById(R.id.imageView)
+//
+//            fun bind(photoUri: String) {
+//                Glide.with(view.context).load(photoUri).into(imageView)
+//                view.setOnClickListener { onClick(photoUri) }
+//            }
+////        }
 //    }
 //
 //
